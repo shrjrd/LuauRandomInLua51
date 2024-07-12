@@ -1,14 +1,12 @@
-# LuauRandomInLua51
+# Luau Random implemented in Lua 5.1
 Roblox's Luau Random class recreated in Lua 5.1
-
 
 Uses this library for 64 bit integer support https://github.com/soupstream/lua-5.1-bigint
 
 Also includes Lua 5.1's math.random, in Lua 5.1
 
 
-
-References:
+# References:
 
 https://rosettacode.org/wiki/Pseudo-random_numbers/PCG32#Lua
 
