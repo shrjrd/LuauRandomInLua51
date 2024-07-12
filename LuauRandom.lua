@@ -37,17 +37,15 @@ _Random.new = function(seed, state)
 		end,
 		NextNumber = function(self, min, max)
 			if not min and not max then 
-				-- return  math.ldexp(pcg32_random():Bor(uint64(pcg32_random()):Shl(32)):ToNumber(), -64)
 				local m = pcg32_random():Bor(uint64(pcg32_random()):Shl(32))
-				local n = BigInt(-64) -- -64
+				local n = BigInt(-64)
 				local v = m:Mul(BigInt(2):Pow(n)) -- m*2^n -- math.ldexp(m,n)
 				return v:ToNumber()
 			elseif min and max then
 				if min == max then return min end
 				if max < min then min, max = max, min end
-				-- return (math.ldexp(pcg32_random():Bor(uint64(pcg32_random()):Shl(32)):ToNumber(), -64)*(max-min))+min
 				local m = pcg32_random():Bor(uint64(pcg32_random()):Shl(32))
-				local n = BigInt(-64) -- -64
+				local n = BigInt(-64)
 				local v = m:Mul(BigInt(2):Pow(n)) -- m*2^n -- math.ldexp(m,n)
 				min, max = BigInt(min), BigInt(max)
 				return (v:Mul(max:Sub(min))):Add(min):ToNumber()
@@ -60,10 +58,10 @@ _Random.new = function(seed, state)
 			end
 		end,
 		NextUnitVector = function()
-			local a = 2*math.pi*(pcg32_random():ToNumber()/4294967296)
-			local x = 2*(pcg32_random():ToNumber()/4294967296) - 1
-			local r = math.sqrt(1 - x*x)
-			return Vector3.new(r*math.cos(a), r*math.sin(a), x)
+			local a = 2 * math.pi * (pcg32_random():ToNumber() / 4294967296)
+			local x = 2 * (pcg32_random():ToNumber() / 4294967296) - 1
+			local r = math.sqrt(1 - x * x)
+			return Vector3.new(r * math.cos(a), r * math.sin(a), x)
 		end,
 		Clone = function()
 			return _Random.new(nil, PCG32_STATE)
